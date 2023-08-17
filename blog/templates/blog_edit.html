@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/Style.css' %}">
+    <title>Edit Blog Post - {{ blog_detail.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>Edit Blog Post</h1>
+        <div class="blog-about">
+            <p>Edit Mode</p>
+            <button onclick="location.href='{% url 'blog_detail' post_id=post.post_id %}'">Cancel</button>
+        </div>
+    </header>
+    <main>
+        <article class="blog-post">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save Changes</button>
+            </form>
+        </article>
+    </main>
+</body>
+</html>

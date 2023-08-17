@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/Style.css' %}">
+    <title>Blog Site - List of Blogs</title>
+</head>
+<body>
+    <header>
+        <h1>Blog Site</h1>
+        <div class="blog-about">
+            <button onclick="location.href='{% url 'blog_create' %}'">Create Post</button>
+        </div>
+    </header>
+    <main>
+        <h3>List of Blogs</h3>
+        <ul class="blog-list">
+            {% for post in post_list %}
+            <li><a href="{% url 'blog_detail' post_id=post.post_id %}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

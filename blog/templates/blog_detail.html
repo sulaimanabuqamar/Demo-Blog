@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/Style.css' %}">
+    <title>Blog Site - Blog Post {{ blog_detail.post_id }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ blog_detail.title }}</h1>
+        <div class="blog-about">
+            {% if blog_detail.edited %}
+            <p>Edited</p>
+            {% else %}
+            <p>Not Edited</p>
+            {% endif %}
+            <p>{{ blog_detail.likes }} Likes</p>
+            <button onclick="location.href='{% url 'blog_list' %}'">Back to List</button>
+            <button onclick="location.href='{% url 'blog_delete' post_id=blog_detail.post_id %}'">Delete Post</button>
+            <button onclick="location.href='{% url 'blog_edit' post_id=blog_detail.post_id %}'">Edit Post</button>
+        </div>
+    </header>
+    <main>
+        <article class="blog-post">
+            <p>{{ blog_detail.content }}</p>
+        </article>
+    </main>
+</body>
+</html>
